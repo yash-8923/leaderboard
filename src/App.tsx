@@ -9,7 +9,7 @@ import ApiService from './services/api';
 
 function App() {
   const [selectedUser, setSelectedUser] = useState(null);
-  const { users, loading: usersLoading, addUser } = useUsers();
+  const { users, loading: usersLoading, addUser, updateUserPoints } = useUsers();
   const { leaderboard, loading: leaderboardLoading, error: leaderboardError, updateLeaderboard } = useLeaderboard();
 
   const handleUserSelect = (user) => {
@@ -24,6 +24,16 @@ function App() {
   const handleClaim = async (userId) => {
     const result = await ApiService.claimPoints(userId);
     updateLeaderboard(result.leaderboard);
+    updateUserPoints(result.leaderboard);
+    
+    // Update selected user if they were the one who claimed points
+    if (selectedUser && selectedUser._id === userId) {
+      const updatedUser = result.leaderboard.find(user => user._id === userId);
+      if (updatedUser) {
+        setSelectedUser(updatedUser);
+      }
+    }
+    
     return result;
   };
 
