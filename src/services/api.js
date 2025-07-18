@@ -1,8 +1,13 @@
-const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+// In production on Railway, use relative URLs. In development, use localhost
+const API_BASE_URL = import.meta.env.VITE_API_URL || 
+  (import.meta.env.PROD ? '' : 'http://localhost:3001');
+
+// Remove trailing slashes to prevent double slashes in URLs
+const cleanBaseUrl = API_BASE_URL.replace(/\/+$/, '');
 
 class ApiService {
   async request(endpoint, options = {}) {
-    const url = `${API_BASE_URL}/api${endpoint}`;
+    const url = `${cleanBaseUrl}/api${endpoint}`;
     const config = {
       headers: {
         'Content-Type': 'application/json',

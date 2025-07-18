@@ -11,6 +11,13 @@ import userRoutes from './routes/users.js';
 import leaderboardRoutes from './routes/leaderboard.js';
 import claimRoutes from './routes/claim.js';
 
+// Import path for serving static files
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 // Load environment variables
 dotenv.config();
 
@@ -65,6 +72,11 @@ const startServer = async () => {
     
     // Seed database with initial data
     await seedDatabase();
+    
+    // Serve static files from React build in production
+    if (process.env.NODE_ENV === 'production') {
+      app.use(express.static(path.join(__dirname, '../dist')));
+    }
     
     // API routes
     app.use('/api/users', userRoutes);
@@ -136,6 +148,13 @@ const startServer = async () => {
         res.status(500).json({ error: 'Failed to get database status' });
       }
     });
+    
+    // Serve React app for all non-API routes in production
+    if (process.env.NODE_ENV === 'production') {
+      app.get('*', (req, res) => {
+        res.sendFile(path.join(__dirname, '../dist/index.html'));
+      });
+    }
     
     // Error handling middleware
     app.use((err, req, res, next) => {
