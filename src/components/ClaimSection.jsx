@@ -56,10 +56,10 @@ export default function ClaimSection({ selectedUser, onClaim, disabled }) {
         <button
           onClick={handleClaim}
           disabled={!selectedUser || claiming || disabled}
-          className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-200 ${
+          className={`w-full py-4 px-6 rounded-xl font-bold text-lg transition-all duration-300 ${
             !selectedUser || claiming || disabled
               ? 'bg-slate-600 cursor-not-allowed text-slate-400'
-              : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transform hover:scale-105'
+              : 'bg-gradient-to-r from-purple-600 to-pink-600 hover:from-purple-700 hover:to-pink-700 text-white shadow-lg shadow-purple-500/25 hover:shadow-purple-500/40 transform hover:scale-105 active:scale-95'
           }`}
         >
           {claiming ? (

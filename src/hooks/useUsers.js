@@ -31,10 +31,13 @@ export function useUsers() {
 
   const updateUserPoints = (leaderboard) => {
     setUsers(prevUsers => {
-      return prevUsers.map(user => {
+      const updatedUsers = prevUsers.map(user => {
         const updatedUser = leaderboard.find(lb => lb._id === user._id);
         return updatedUser ? { ...user, totalPoints: updatedUser.totalPoints } : user;
       });
+      
+      // Sort users by points in descending order for real-time sorting
+      return updatedUsers.sort((a, b) => b.totalPoints - a.totalPoints);
     });
   };
 

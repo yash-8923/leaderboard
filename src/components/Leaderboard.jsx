@@ -63,7 +63,7 @@ export default function Leaderboard({ leaderboard, loading, error }) {
 
       {/* Desktop Table View */}
       <div className="hidden md:block">
-        <div className="overflow-hidden rounded-xl border border-slate-700/50">
+        <div className="overflow-hidden rounded-xl border border-slate-700/50 animate-in fade-in duration-500">
           <table className="w-full">
             <thead>
               <tr className="bg-slate-700/50 border-b border-slate-600/50">
@@ -76,7 +76,7 @@ export default function Leaderboard({ leaderboard, loading, error }) {
               {leaderboard.map((user, index) => (
                 <tr 
                   key={user._id} 
-                  className={`hover:bg-slate-700/20 transition-colors ${getRankStyles(index + 1)}`}
+                  className={`hover:bg-slate-700/20 transition-all duration-200 hover:scale-102 ${getRankStyles(index + 1)}`}
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-2">
@@ -97,11 +97,11 @@ export default function Leaderboard({ leaderboard, loading, error }) {
       </div>
 
       {/* Mobile Card View */}
-      <div className="md:hidden space-y-3">
+      <div className="md:hidden space-y-3 animate-in fade-in duration-500">
         {leaderboard.map((user, index) => (
           <div
             key={user._id}
-            className={`p-4 rounded-xl border transition-all duration-200 ${getRankStyles(index + 1)}`}
+            className={`p-4 rounded-xl border transition-all duration-300 hover:scale-102 ${getRankStyles(index + 1)}`}
           >
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">

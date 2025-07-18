@@ -52,9 +52,9 @@ function App() {
         </div>
 
         {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           {/* Left Column - User Selection and Claiming */}
-          <div className="space-y-6">
+          <div className="space-y-4 lg:space-y-6">
             <UserSelector
               users={users}
               selectedUser={selectedUser}
@@ -71,7 +71,7 @@ function App() {
           </div>
 
           {/* Right Column - Leaderboard */}
-          <div className="lg:sticky lg:top-8">
+          <div className="lg:sticky lg:top-4 lg:max-h-[calc(100vh-2rem)] lg:overflow-auto">
             <Leaderboard
               leaderboard={leaderboard}
               loading={leaderboardLoading}
@@ -81,19 +81,19 @@ function App() {
         </div>
 
         {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 text-center">
-            <div className="text-3xl font-bold text-purple-400 mb-2">{users.length}</div>
+            <div className="text-2xl md:text-3xl font-bold text-purple-400 mb-2">{users.length}</div>
             <div className="text-slate-300">Total Players</div>
           </div>
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 text-center">
-            <div className="text-3xl font-bold text-emerald-400 mb-2">
+            <div className="text-2xl md:text-3xl font-bold text-emerald-400 mb-2">
               {leaderboard.reduce((sum, user) => sum + user.totalPoints, 0)}
             </div>
             <div className="text-slate-300">Total Points</div>
           </div>
           <div className="bg-slate-800/50 backdrop-blur-sm rounded-2xl p-6 border border-slate-700/50 text-center">
-            <div className="text-3xl font-bold text-yellow-400 mb-2">
+            <div className="text-2xl md:text-3xl font-bold text-yellow-400 mb-2">
               {leaderboard.length > 0 ? leaderboard[0]?.totalPoints || 0 : 0}
             </div>
             <div className="text-slate-300">Top Score</div>
