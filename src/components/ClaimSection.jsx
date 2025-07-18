@@ -20,6 +20,8 @@ export default function ClaimSection({ selectedUser, onClaim, disabled }) {
       setTimeout(() => setShowSuccess(false), 3000);
     } catch (error) {
       console.error('Claim failed:', error);
+      // You could add error state here to show user-friendly error message
+      alert(`Failed to claim points: ${error.message}`);
     } finally {
       setClaiming(false);
     }

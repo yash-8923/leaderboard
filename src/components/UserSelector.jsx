@@ -20,7 +20,7 @@ export default function UserSelector({ users, selectedUser, onUserSelect, onAddU
       setNewUserName('');
       setShowAddForm(false);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || 'Failed to add user. Please check your connection.');
     } finally {
       setIsAdding(false);
     }
